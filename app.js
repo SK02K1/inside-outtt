@@ -1,5 +1,6 @@
 const inputEmoji = document.querySelector("#input-emoji");
 const meaningContainer = document.querySelector("#meaning");
+const emojiContainer = document.querySelector(".emoji-container");
 
 const emojiCollection = {
     "😊": "Smiling",
@@ -24,5 +25,16 @@ const emojiCollection = {
         showMeaning(emoji);
     }else{
         meaningContainer.textContent = "";
+    }
+  });
+
+  emojiContainer.innerHTML = Object.keys(emojiCollection).map((emoji) => {
+    return `<span class="emoji" >${emoji}</span>`
+  }).join("");
+
+  emojiContainer.addEventListener("click", (e) => {
+    if(e.target.tagName === "SPAN"){
+        const emoji = e.target.textContent;
+        showMeaning(emoji)
     }
   });
